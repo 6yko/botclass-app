@@ -1,0 +1,28 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="BotClass.App"
+             RequestedThemeVariant="Dark"
+			 xmlns:views="clr-namespace:BotClass.Views"
+             xmlns:vm="using:BotClass.ViewModels"
+             x:DataType="vm:MainViewModel"
+			 
+
+
+			 >
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+	<TrayIcon.Icons>
+		<TrayIcons >
+			<TrayIcon Icon="/Assets/avalonia-logo.ico" ToolTipText="BotClass" Command="{Binding ShowAppFromTray}" >
+				<TrayIcon.Menu >
+					<NativeMenu >
+						<NativeMenuItem Header="Settings" Command="{Binding ShowSettings}" />
+						<NativeMenuItem Header="Exit"  Command="{Binding ExitCommand}" />
+					</NativeMenu>
+				</TrayIcon.Menu>
+			</TrayIcon>
+		</TrayIcons>
+	</TrayIcon.Icons>
+    <Application.Styles>
+        <FluentTheme />
+    </Application.Styles>
+</Application>

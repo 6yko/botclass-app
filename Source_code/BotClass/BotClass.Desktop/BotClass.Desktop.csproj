@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <!--If you are willing to use Windows/MacOS native APIs you will need to create 3 projects.
+    One for Windows with net7.0-windows TFM, one for MacOS with net7.0-macos and one with net7.0 TFM for Linux.-->
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <StartupObject>BotClass.Desktop.Program</StartupObject>
+    <Version>1.0.10</Version>
+    <Authors>Qucid</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.7" />
+	<PackageReference Include="Dotnet.Bundle" Version="*"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BotClass\BotClass.csproj" />
+  </ItemGroup>
+	<PropertyGroup>
+		<UseAppHost>true</UseAppHost>
+	</PropertyGroup>
+</Project>

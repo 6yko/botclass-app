@@ -1,0 +1,61 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="160"
+		xmlns:vm="using:BotClass.ViewModels"
+        x:Class="BotClass.Views.SettingsWindow"
+        Title="Settings"
+		Icon="avares://BotClass/Assets/Settings.png"
+	    xmlns:views="clr-namespace:BotClass.Views"
+	    Width="400" Height="160" Background="#393d40"
+        CanResize="False"
+        x:DataType="vm:MainViewModel"
+	>
+	<StackPanel>
+		<Border Margin="20" Background="#2a2d2e" CornerRadius="5" Width="360" Height="50">
+			<StackPanel Orientation="Horizontal">
+				<Label Margin="10,13,20,0">Token: </Label>
+				<TextBox Name="TextBoxToken" Background="#1f1f1f" BorderThickness="0" Width="265" Height="30" Text="{Binding Token}">
+					<TextBox.Styles>
+						<!-- Disabling the border when element is selected -->
+						<Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+							<Setter Property="BorderThickness" Value="0" ></Setter>
+							<Setter Property="Background" Value="#1f1f1f"></Setter>
+
+						</Style>
+						<!-- Disabling the border when hovering the mouse-->
+						<Style Selector="TextBox:pointerover">
+							<Setter Property="BorderThickness" Value="0"></Setter>
+							<Setter Property="Background" Value="#1f1f1f"></Setter>
+
+
+						</Style>
+						<!-- Disabling background backlight when hovering the mouse -->
+						<Style Selector="TextBox:pointerover /template/Border#PART_BorderElement">
+							<Setter Property="Background" Value="#1f1f1f" />
+
+						</Style>
+
+					</TextBox.Styles>
+				</TextBox>
+			</StackPanel>
+		</Border>
+		
+		<Border Margin="20,0,20,0" Background="#2a2d2e" CornerRadius="5" Width="360" Height="50">
+			<StackPanel Orientation="Horizontal">
+				<Label Margin="10,13,20,0">Always minimaze to tray:</Label>
+				<CheckBox Name="CheckBoxStartAlwaysMin" IsChecked="{Binding AlwaysMinimazeToTray} "></CheckBox>
+			</StackPanel>
+		</Border>
+		
+		<Border Margin="20,0,20,0" IsVisible="False" Background="#2a2d2e" CornerRadius="5" Width="360" Height="50">
+			<StackPanel Orientation="Horizontal">
+				<Label Margin="10,13,20,0">Start with system:</Label>
+				<CheckBox Name="CheckBoxStartWithSystem" IsChecked="{Binding IsStartingWithSystem} "></CheckBox>
+			</StackPanel>
+		</Border>
+		
+		
+	</StackPanel>
+</Window>

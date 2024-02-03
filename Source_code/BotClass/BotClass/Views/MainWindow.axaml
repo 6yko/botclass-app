@@ -1,0 +1,111 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:BotClass.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:BotClass.Views"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="800"
+		Width="600" Height="800" Background="#393d40"
+        x:Class="BotClass.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="BotClass" CanResize="False"
+		
+
+             x:DataType="vm:MainViewModel"
+		
+		>
+	
+
+	<StackPanel>
+		<StackPanel Orientation="Horizontal">
+
+			<TextBox Text="{Binding Request}" BorderBrush="#1f1f1f" Name="EnterText" FontSize="20"
+					 AcceptsReturn="False" TextWrapping="Wrap" VerticalContentAlignment="Center" 
+					 IsUndoEnabled="True" BorderThickness="0" CaretBrush="#007bff" SelectionBrush="Gray"  Background="#1f1f1f" Margin="20,20,0,0" Width="460" Height="50">
+				<TextBox.Styles>
+					<!-- Disabling the border when element is selected -->
+					<Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+						<Setter Property="BorderThickness" Value="0" ></Setter>
+						<Setter Property="Background" Value="#1f1f1f"></Setter>
+
+					</Style>
+					<!-- Disabling the border when hovering the mouse-->
+					<Style Selector="TextBox:pointerover">
+						<Setter Property="BorderThickness" Value="0"></Setter>
+						<Setter Property="Background" Value="#1f1f1f"></Setter>
+
+
+					</Style>
+					<!-- Disabling background backlight when hovering the mouse -->
+					<Style Selector="TextBox:pointerover /template/Border#PART_BorderElement">
+						<Setter Property="Background" Value="#1f1f1f" />
+
+					</Style>
+
+				</TextBox.Styles>
+			</TextBox>
+
+			<Button Background="Transparent" Margin="-30,10,0,0" Width="32" Height="32">
+				<Image Name="CrossDelText" Source="/Assets/Cross.png"></Image>
+				<Button.Styles>
+					<!-- Disabling background backlight when hovering the mouse -->
+
+					<Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+						<Setter Property="Background" Value="Transparent"></Setter>
+					</Style>
+				</Button.Styles>
+			</Button>
+
+			<Button x:Name="PushMessageButton" Command="{Binding PushMessage}" IsDefault="True" BorderThickness="0" CornerRadius="2" Background="#2a2d2e"
+					Margin="1,20,0,0" Width="40" Height="50">
+
+				<Image Source="/Assets/Arrow.png"></Image>
+			</Button>
+
+			<Rectangle Fill="#1f1f1f" Margin="-87,20,0,0" Width="10" Height="50"></Rectangle>
+
+			<!-- Settings button -->
+			<Button Command="{Binding ShowSettings}" Background="Transparent"  Margin="6,17,0,0">
+				<Image Stretch="Fill" Width="55" Height="55" Margin="-12,-9,-10,-10" Source="/Assets/Settings.png"></Image>
+				<Button.Styles>
+					<!-- Disabling background backlight when hovering the mouse -->
+
+					<Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+						<Setter Property="Background" Value="Transparent"></Setter>
+					</Style>
+				</Button.Styles>
+			</Button>
+			
+		</StackPanel>
+
+		<ProgressBar Name="ProgressBar" Margin="20,10,20,0" IsIndeterminate="{Binding IsIndeterminateProgressBar}" Background="#393d40" Foreground="#1f1f1f" Height="10"></ProgressBar>
+		<TextBox Name="TextBoxResult" BorderThickness="0" Text="{Binding Result}" BorderBrush="#1f1f1f" Focusable="False" SelectionBrush="Gray" AcceptsReturn="True" TextWrapping="Wrap"  Background="#1f1f1f" Height="690"
+				 Margin="20,10,20,20">
+			<TextBox.Styles>
+				<!-- Disabling the border when element is selected -->
+				<Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+					<Setter Property="BorderThickness" Value="0" ></Setter>
+					<Setter Property="Background" Value="#1f1f1f"></Setter>
+				</Style>
+				<!-- Disabling the border when hovering the mouse-->
+				<Style Selector="TextBox:pointerover">
+					<Setter Property="BorderThickness" Value="0"></Setter>
+					<Setter Property="Background" Value="#1f1f1f"></Setter>
+
+				</Style>
+				<!-- Disabling background backlight when hovering the mouse -->
+				<Style Selector="TextBox:pointerover /template/Border#PART_BorderElement">
+					<Setter Property="Background" Value="#1f1f1f" />
+				</Style>
+
+				<Style Selector="TextBox[IsReadOnly=True]"></Style>
+
+			</TextBox.Styles>
+		</TextBox>
+
+
+		<views:MainView />
+	</StackPanel>
+
+
+</Window>

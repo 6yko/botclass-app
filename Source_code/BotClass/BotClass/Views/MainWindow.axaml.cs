@@ -22,6 +22,10 @@ using System.Collections.Generic;
 using SharpHook.Native;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Threading;
+using Avalonia.Input.Platform;
+using Splat;
+using Avalonia.Controls.Platform;
+using Avalonia.Rendering;
 
 
 
@@ -47,6 +51,8 @@ public partial class MainWindow : Window
         CrossDelText.PointerExited += CrossDelText_PointerExited;
         CrossDelText.Tapped += CrossDelText_Tapped;
         this.Closing += MainWindow_Closing;
+        this.Resized += MainWindow_Resized;
+        EnterText.SizeChanged += EnterText_SizeChanged;
 
         BotClassWrapper.ResponseReceived += (s, e) => 
         {
@@ -132,8 +138,21 @@ public partial class MainWindow : Window
             hook.Run();
         });
 
+        
+
+        if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        {
+            
+        }
 
         //HotKeyManager.SetHotKey(PushMessageButton, new Avalonia.Input.KeyGesture(Avalonia.Input.Key.Space, Avalonia.Input.KeyModifiers.Control));
+    }
+
+    // Resize rectangle when entertext resized
+    private void EnterText_SizeChanged(object? sender, SizeChangedEventArgs e)
+    {
+        RectangleBackroungOfEnterText.Height = EnterText.Height;
+        //CrossDelText.Margin = new Thickness(-30, 0, 0, 10);
     }
 
     private void EnterText_KeyDown(object? sender, KeyEventArgs e)
@@ -148,6 +167,7 @@ public partial class MainWindow : Window
         {
             this.ShowInTaskbar = false;
         }
+        EnterText.Width = this.Width - 140;
     }
 
         // Close the settings window when main window is closing
